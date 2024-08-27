@@ -1,6 +1,7 @@
 package org.zerock.w1.todo.dao;
 
 import lombok.Cleanup;
+import lombok.extern.log4j.Log4j2;
 import org.zerock.w1.todo.domain.TodoVO;
 
 import java.sql.Connection;
@@ -9,7 +10,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
-
+@Log4j2
 public class TodoDAO {
 
     public void insert(TodoVO vo) throws Exception{
@@ -22,7 +23,7 @@ public class TodoDAO {
         pstmt.setString(1, vo.getTitle());
         pstmt.setDate(2, Date.valueOf(vo.getDueDate()));
         pstmt.setBoolean(3, vo.isFinished());
-
+        log.info(sql);
         pstmt.executeUpdate();
 
 

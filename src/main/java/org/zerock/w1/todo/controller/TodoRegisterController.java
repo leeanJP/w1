@@ -5,14 +5,24 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import lombok.extern.log4j.Log4j2;
+import org.zerock.w1.todo.dto.TodoDTO;
+import org.zerock.w1.todo.service.TodoService;
 
 import java.io.IOException;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 
 @WebServlet(name = "todoRegisterController", urlPatterns = "/todo/register")
+@Log4j2
 public class TodoRegisterController extends HttpServlet {
+
+    private TodoService todoService = TodoService.INSTANCE;
+    private final DateTimeFormatter DATEFORMATTER = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        System.out.println("입력 화면을 볼 수 있도록 구성");
+        log.info("TodoRegisterController doGet ... ");
 
         req.getRequestDispatcher("/WEB-INF/todo/register.jsp").forward(req, resp);
 
@@ -20,7 +30,20 @@ public class TodoRegisterController extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        System.out.println("입력을 처리하고 목록 페이지로 이동");
+
+        log.info("TodoRegisterController doPost ... ");
+
+        TodoDTO todoDTO = TodoDTO.builder()
+                .title(req.getParameter("title"))
+                .dueDate(LocalDate.parse(req.getParameter("dueDate"), DATEFORMATTER))
+                .build();
+
+        log.info(todoDTO);
+        try {
+            todoService.register(todoDTO);
+        }catch (Exception e){
+            e.printStackTrace();
+        }
 
         resp.sendRedirect("/todo/list");
 
