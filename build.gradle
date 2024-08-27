@@ -30,7 +30,8 @@ dependencies {
     implementation group: 'org.glassfish.web', name: 'jakarta.servlet.jsp.jstl', version: '3.0.1'
 
     implementation group: 'org.mariadb.jdbc', name: 'mariadb-java-client', version: '3.3.3'
-    implementation group: 'hikari-cp', name: 'hikari-cp', version: '3.1.0'
+    implementation group: 'com.zaxxer', name: 'HikariCP', version: '5.1.0'
+
 
     compileOnly 'org.projectlombok:lombok:1.18.34'
     annotationProcessor 'org.projectlombok:lombok:1.18.34'
