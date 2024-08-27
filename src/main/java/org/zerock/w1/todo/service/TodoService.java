@@ -1,6 +1,10 @@
 package org.zerock.w1.todo.service;
 
+import org.modelmapper.ModelMapper;
+import org.zerock.w1.todo.dao.TodoDAO;
+import org.zerock.w1.todo.domain.TodoVO;
 import org.zerock.w1.todo.dto.TodoDTO;
+import org.zerock.w1.todo.util.MapperUtil;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -18,8 +22,21 @@ public enum TodoService {
     //객체를 하나만 생성해서 사용한다.
     //싱글톤 패턴이라고 한다.
 
-    public void register(TodoDTO todoDTO){
-        System.out.println("DEBUG ... " + todoDTO);
+    private TodoDAO dao;
+    private ModelMapper modelMapper;
+
+    TodoService() {
+        dao = new TodoDAO();
+        modelMapper = MapperUtil.INSTACE.get();
+    }
+
+
+    public void register(TodoDTO todoDTO) throws Exception{
+
+        TodoVO todoVO = modelMapper.map(todoDTO , TodoVO.class);
+        System.out.println(todoVO);
+        dao.insert(todoVO);
+
 
     }
 

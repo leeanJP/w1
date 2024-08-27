@@ -6,6 +6,7 @@ import org.junit.jupiter.api.Test;
 import org.zerock.w1.todo.domain.TodoVO;
 
 import java.time.LocalDate;
+import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -37,6 +38,34 @@ class TodoDAOTest {
         dao.insert(vo);
     }
 
+    @Test
+    public void testList() throws Exception{
+        List<TodoVO> list = dao.selectAll();
+
+        list.forEach(vo-> {
+            System.out.println(vo);
+        });
+    }
+
+    @Test
+    public void testSelectOne() throws Exception{
+
+        Long tno = 3L;
+        TodoVO vo = dao.selectOne(tno);
+        System.out.println(vo);
+    }
+
+    @Test
+    public void testUpdateOne() throws Exception{
+        TodoVO todoVO = TodoVO.builder()
+                .tno(1L)
+                .title("update Test")
+                .dueDate(LocalDate.of(2024,12,31))
+                .finished(true)
+                .build();
+
+        dao.updateOne(todoVO);
+    }
 
     @Test
     void getTime() throws Exception{
