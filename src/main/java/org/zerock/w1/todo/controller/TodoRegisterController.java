@@ -1,4 +1,4 @@
-package org.zerock.w1.todo;
+package org.zerock.w1.todo.controller;
 
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;

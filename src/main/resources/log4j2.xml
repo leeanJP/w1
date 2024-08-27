@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration status="WARN">
+
+    <!--
+        오류 레벨
+        FATAL : 서버 종료를 유발하는 심각한 오류
+        ERROR : 런타임 오류 또는 예기치않은 조건
+        WARN : '거의'오류에 가까운 상황
+        INFO : 런타임 이벤트
+        DEBUG : 시스템을 통한 흐름에 대한 자세한 정보
+        TRACE : 가장 자세한 정보
+    -->
+    <Appenders>
+        <Console name="Console" target="SYSTEM_OUT">
+            <PatternLayout pattern="%d{HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n"/>
+        </Console>
+    </Appenders>
+    <Loggers>
+        <Root level="INFO">
+            <AppenderRef ref="Console"/>
+        </Root>
+    </Loggers>
+</Configuration>

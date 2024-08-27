@@ -1,5 +1,6 @@
 package org.zerock.w1.todo.service;
 
+import lombok.extern.log4j.Log4j2;
 import org.modelmapper.ModelMapper;
 import org.zerock.w1.todo.dao.TodoDAO;
 import org.zerock.w1.todo.domain.TodoVO;
@@ -11,6 +12,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
+@Log4j2
 public enum TodoService {
     //서비스 객체는 기능들의 묶음
     //CRUD 기능들을 모두 서비스 객체에 모아서 구현된다.
@@ -34,11 +36,26 @@ public enum TodoService {
     public void register(TodoDTO todoDTO) throws Exception{
 
         TodoVO todoVO = modelMapper.map(todoDTO , TodoVO.class);
-        System.out.println(todoVO);
+        //System.out.println(todoVO);
+        log.info("***"+ todoVO);
         dao.insert(todoVO);
 
 
     }
+
+    public List<TodoDTO> listAll() throws Exception{
+        List<TodoVO> voList = dao.selectAll();
+
+        log.info("listAll .........");
+        log.info(voList);
+
+        List<TodoDTO> dtoList = voList.stream()
+                .map(vo -> modelMapper.map(vo,TodoDTO.class))
+                .collect(Collectors.toList());
+
+        return dtoList;
+    }
+
 
     public List<TodoDTO> getList() {
 
