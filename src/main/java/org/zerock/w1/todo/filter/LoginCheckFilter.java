@@ -43,6 +43,7 @@ public class LoginCheckFilter implements Filter {
                     session.setAttribute("loginInfo", dto);
                 }catch (Exception e){
                     e.printStackTrace();
+                    resp.sendRedirect("/login");
                 }
 
                 filterChain.doFilter(req,resp);

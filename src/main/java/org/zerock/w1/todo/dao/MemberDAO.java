@@ -59,7 +59,7 @@ public class MemberDAO {
 
         @Cleanup ResultSet rs = pstmt.executeQuery();
 
-
+        rs.next();
         MemberVO memberVO = MemberVO.builder()
                 .mid(rs.getString("mid"))
                 .mpw(rs.getString("mpw"))
