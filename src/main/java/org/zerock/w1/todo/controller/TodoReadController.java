@@ -19,7 +19,6 @@ public class TodoReadController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-        // /todo/read?tno=1
         try {
             log.info(req.getParameter("tno"));
 
