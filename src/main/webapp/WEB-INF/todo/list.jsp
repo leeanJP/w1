@@ -10,6 +10,8 @@
 <body>
     <h1>ToDo List</h1>
 
+    <h2>${loginInfo}</h2>
+    <h2>${loginInfo.mname}</h2>
     <ul>
         <c:forEach var="dto"  items="${list}">
             <li>
@@ -20,6 +22,10 @@
             </li>
         </c:forEach>
     </ul>
+
+    <form action="/logout" method="post">
+        <button>LOGOUT</button>
+    </form>
 
 <%--    <c:if test="${list.size() % 2 == 0}">--%>
 <%--        짝수--%>

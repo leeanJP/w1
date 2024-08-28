@@ -29,7 +29,7 @@ public enum TodoService {
 
     TodoService() {
         dao = new TodoDAO();
-        modelMapper = MapperUtil.INSTACE.get();
+        modelMapper = MapperUtil.INSTANCE.get();
     }
 
 

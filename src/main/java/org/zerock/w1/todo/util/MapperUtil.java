@@ -3,10 +3,9 @@ package org.zerock.w1.todo.util;
 import org.modelmapper.ModelMapper;
 import org.modelmapper.config.Configuration;
 import org.modelmapper.convention.MatchingStrategies;
-import org.modelmapper.spi.MatchingStrategy;
 
 public enum MapperUtil {
-    INSTACE;
+    INSTANCE;
 
     private ModelMapper modelMapper;
 
